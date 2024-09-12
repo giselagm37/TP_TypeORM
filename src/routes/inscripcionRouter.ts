@@ -1,8 +1,8 @@
 import express from 'express';
 const router=express.Router();
-import { calificar, cancelarInscripcion, consultarInscripciones, consultarxAlumno, consultarxCurso, inscribir } from '../controllers/inscripcionController';
+import { calificar, cancelarInscripcion, consultarTodos, consultarxAlumno, consultarxCurso, inscribir } from '../controllers/inscripcionController';
 
-router.get('/',consultarInscripciones);
+router.get('/',consultarTodos);
 router.get('/xAlumno/:id',consultarxAlumno );
 router.get('/xCurso/:id',consultarxCurso );
 

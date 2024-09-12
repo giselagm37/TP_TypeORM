@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import { Profesor } from '../models/ProfesorModel';
 import { Estudiante } from '../models/EstudianteModel';
 import { Curso } from '../models/CursoModel';
+import { CursoEsudiante } from '../models/CursoEstudianteModel';
 dotenv.config();
 
 const port:number=process.env.BD_PORT ? parseInt(process.env.BD_PORT,10):3306;
@@ -27,8 +28,8 @@ export const AppDataSource=new DataSource({
     username:process.env.DB_USER,
     password:process.env.DB_PASSWORD,
     database:process.env.DB_NAME,
-    entities:[Profesor, Estudiante, Curso, Estudiante],
-    synchronize:true,
+    entities:[Profesor, Estudiante, Curso, CursoEsudiante],
+    synchronize:true, //true para que sincronice a cada rato
     logging:true
 });
 

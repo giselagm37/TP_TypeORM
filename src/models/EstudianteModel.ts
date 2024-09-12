@@ -7,6 +7,8 @@ import { Column,
          JoinTable
         } from "typeorm";
 import {Curso} from "./CursoModel";
+
+//entidades
 @Entity('estudiantes')
 export class Estudiante{
     @PrimaryGeneratedColumn()
@@ -23,6 +25,8 @@ export class Estudiante{
     createAt:Date;
     @UpdateDateColumn()
     updateAt:Date;
+//relaciones
+
 
     @ManyToMany(()=>Curso)
     @JoinTable({

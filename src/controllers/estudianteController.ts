@@ -1,13 +1,17 @@
 import { Request, Response } from 'express';
-import { AppDataSource } from '../db/coenxion';
+import { AppDataSource } from '../db/conexion';
 import {Estudiante} from '../models/EstudianteModel'
 
   const estudianteRepository=AppDataSource.getRepository(Estudiante); 
 
   export const consultarTodos= async (req:Request, res:Response) =>{
         try {
+            //trae todos los datos de la tabla
           const estudiantes=await estudianteRepository.find();
           res.json(estudiantes);
+          if (!estudiantes){
+            throw new Error('Estudiante no encontrado')
+        }
         } catch (err: unknown) {
             if (err instanceof Error){
                 res.status(500).send(err.message);
@@ -44,7 +48,7 @@ import {Estudiante} from '../models/EstudianteModel'
             if(!estudiante)
                 return res.status(400).json({mens:"Estudiante no encontrado"});
             estudianteRepository.merge(estudiante,req.body);
-            const result=await estudianteRepository.save(estudiante);
+            const result = await estudianteRepository.save(estudiante);
             res.json(result);
         } catch (err: unknown) {
             if (err instanceof Error){

@@ -9,7 +9,7 @@ import estudianteRouter from './routes/estudianteRouter';
 import profesorRouter from './routes/profesorRoutes';
 import cursoRouter from'./routes/cursosRouter';
 import inscripcionRouter from'./routes/inscripcionRouter';
-import methodOverride from "method-override";
+//import methodOverride from "method-override";
 
 const port =3000;
 const app=express();
@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, '/views'));
 //carpeta publica
 app.use(express.static('public'));
 
-app.use(methodOverride('_method'))
+//app.use(methodOverride('_method'))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

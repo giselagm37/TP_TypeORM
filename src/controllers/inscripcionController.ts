@@ -1,15 +1,26 @@
 import { Request, Response } from 'express';
+import { AppDataSource } from '../db/conexion';
 
+import {CursoEsudiante} from '../models/CursoEstudianteModel';
 
-  export const consultarInscripciones= async (req:Request, res:Response) =>{
+const CursoEstudianteRepository = AppDataSource.getRepository(CursoEsudiante);
+
+  export const consultarTodos= async (req:Request, res:Response) =>{
         try {
-          res.json('Consulta inscripciones');
+            //trae todos los datos de la tabla
+            const curso = await CursoEstudianteRepository.find();
+            res.json(curso);
+            if (!curso){
+                throw new Error('Inscripcion no encontrada')
+            }
         } catch (err: unknown) {
             if (err instanceof Error){
                 res.status(500).send(err.message);
             }
         }
-    }
+  }
+
+
 
     export const consultarxAlumno= async (req:Request, res:Response) =>{
         try {
